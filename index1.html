@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0f7fa;
+        }
+        #calculator {
+            border: 1px solid #00796b;
+            border-radius: 10px;
+            padding: 30px;
+            background: #4f4f4f;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        #display {
+            width: 93%;
+            height: 50px;
+            font-size: 24px;
+            text-align: right;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            color: white;
+            background-color: #7f7f7f;
+        }
+        button {
+            width: 70px;
+            height: 70px;
+            font-size: 24px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #009688;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #00796b;
+        }
+        button:active {
+            background-color: #004d40;
+        }
+        .operator {
+            background-color: #0091ff;
+        }
+        .operator:hover {
+            background-color: #0015fb;
+        }
+        .operator:active {
+            background-color: #5eff00;
+        }
+        .special {
+            background-color: #ff08da;
+        }
+        .special:hover {
+            background-color: #e53935;
+        }
+        .special:active {
+            background-color: #c62828;
+        }
+        #navigate-button{
+            background-color: #000000;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="calculator">
+    <input type="text" id="display" disabled>
+    <div>
+        <button class="special" onclick="clearDisplay()">C</button>
+        <button class="operator" onclick="appendToDisplay('/')">/</button>
+        <button class="operator" onclick="appendToDisplay('*')">*</button>
+        <button class="operator" onclick="appendToDisplay('-')">-</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button class="operator" onclick="appendToDisplay('+')">+</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button class="special" onclick="calculateSquareRoot()">√</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button class="special" onclick="calculateExponent()">^</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button class="special" onclick="calculatePercentage()">%</button>
+        <button class="special" onclick="calculateResult()">=</button>
+    </div>
+</div>
+<button id="navigate-button">To IOS Version</button>
+<script>
+    let lastInput = '';
+
+function clearDisplay() {
+    document.getElementById('display').value = '';
+    lastInput = '';
+}
+
+function appendToDisplay(value) {
+    const display = document.getElementById('display');
+    
+    if (isNaN(value) && lastInput === value) return;
+
+    
+    if (value === '.' && display.value.includes('.')) return;
+
+    display.value += value;
+    lastInput = value;
+}
+
+function calculateResult() {
+    try {
+        const result = eval(document.getElementById('display').value);
+        document.getElementById('display').value = result;
+        lastInput = ''; 
+    } catch (error) {
+        document.getElementById('display').value = 'Error!';
+        lastInput = '';
+    }
+}
+
+function calculateSquareRoot() {
+    const value = parseFloat(document.getElementById('display').value);
+    document.getElementById('display').value = Math.sqrt(value);
+    lastInput = '';
+}
+
+function calculateExponent() {
+    const base = parseFloat(document.getElementById('display').value);
+    const exponent = prompt("Enter exponent:");
+    document.getElementById('display').value = Math.pow(base, exponent);
+    lastInput = '';
+}
+
+function calculatePercentage() {
+    const value = parseFloat(document.getElementById('display').value);
+    document.getElementById('display').value = value / 100;
+    lastInput = '';
+}
+
+document.getElementById('navigate-button').addEventListener('click', function() {
+    window.location.href = 'index.html';
+});
+</script>
+</body>
+</html>

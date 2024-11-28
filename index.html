@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="calculator">
+    <input type="text" id="display" disabled>
+    <div>
+        <button class="special" onclick="clearDisplay()" id="g3">C</button>
+        <button class="operator" onclick="appendToDisplay('/')" id="g1">/</button>
+        <button class="operator" onclick="appendToDisplay('*')" id="g2">*</button>
+        <button class="operator" onclick="appendToDisplay('-')" id="minus">-</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('7')" class="btnb">7</button>
+        <button onclick="appendToDisplay('8')" class="btnb">8</button>
+        <button onclick="appendToDisplay('9')" class="btnb">9</button>
+        <button class="operator" onclick="appendToDisplay('+')" id="plus">+</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('4')" class="btnb">4</button>
+        <button onclick="appendToDisplay('5')" class="btnb">5</button>
+        <button onclick="appendToDisplay('6')" class="btnb">6</button>
+        <button class="special" onclick="calculateSquareRoot()" id="divide">√</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('1')" class="btnb">1</button>
+        <button onclick="appendToDisplay('2')" class="btnb">2</button>
+        <button onclick="appendToDisplay('3')" class="btnb">3</button>
+        <button class="special" onclick="calculateExponent()" id="multiply">^</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('0')" class="btn0">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button class="special" onclick="calculateResult()" id="equal">=</button>
+    </div>
+</div>
+
+<button id="navigate-button">To Simple Ver</button>
+<script src="./script.js"></script>
+</body>
+</html>
